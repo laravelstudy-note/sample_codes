@@ -1,0 +1,38 @@
+.container {
+	margin: 0 auto;
+	width: 80%;
+}
+
+/* layoutのcss */
+
+.layout-2col {
+	display: flex;
+}
+
+.layout-2col .left{
+	width: 50%;
+}
+
+.layout-2col .left .card{
+	width:100%;
+}
+
+.layout-2col .right {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.layout-2col .right .card {
+	width: 50%;
+}
+
+/* cardのCSS */
+
+.card {
+	box-sizing: border-box;
+	padding: 10px;
+}
+
+.card img {
+	width: 100%;
+}
