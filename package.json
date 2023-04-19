@@ -26,6 +26,11 @@
     "webpack-dev-server": "^4.13.1"
   },
   "dependencies": {
-    "bootstrap": "^5.2.3"
+    "bootstrap": "^5.2.3",
+    "js-cookie": "^3.0.1",
+    "phaser": "^3.60.0",
+    "push.js": "^1.0.12",
+    "three": "^0.151.3",
+    "tone": "^14.7.77"
   }
 }

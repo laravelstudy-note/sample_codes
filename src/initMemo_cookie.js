@@ -1,4 +1,4 @@
-import { readFromLocalStorage, writeToLocalStorage } from "./local-storage";
+import { readFromCookie, writeToCookie } from "./cookie";
 
 export default function initMemo() {
 	const btnSave = document.getElementById("save-btn");
@@ -6,9 +6,9 @@ export default function initMemo() {
 
 	//イベントの設定
 	btnSave.addEventListener("click", () => {
-		writeToLocalStorage(textarea.value);
+		writeToCookie(textarea.value);
 	});
 
 	//初期値
-	textarea.value = readFromLocalStorage();
+	textarea.value = readFromCookie();
 }

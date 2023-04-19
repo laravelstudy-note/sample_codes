@@ -1,4 +1,7 @@
-import { readFromLocalStorage, writeToLocalStorage } from "./local-storage";
+import {
+	readFromSessionStorage,
+	writeToSessionStorage,
+} from "./session-storage";
 
 export default function initMemo() {
 	const btnSave = document.getElementById("save-btn");
@@ -6,9 +9,9 @@ export default function initMemo() {
 
 	//イベントの設定
 	btnSave.addEventListener("click", () => {
-		writeToLocalStorage(textarea.value);
+		writeToSessionStorage(textarea.value);
 	});
 
 	//初期値
-	textarea.value = readFromLocalStorage();
+	textarea.value = readFromSessionStorage();
 }
