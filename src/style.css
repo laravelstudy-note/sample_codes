@@ -1,0 +1,9 @@
+import
+.todo {
+	width:80%;
+	margin:0 auto;
+}
+
+#task-list li.finish {
+	text-decoration:line-through;
+}
