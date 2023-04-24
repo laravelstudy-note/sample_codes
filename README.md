@@ -1,1 +1,2 @@
-# sample_codes
+06 sample
+==================
