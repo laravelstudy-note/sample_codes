@@ -1,1 +1,1 @@
-# sample_codes
+# 10_samples
