@@ -1,8 +1,9 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Layout from "./layouts/Layout";
 import { useEffect, useState } from "react";
 import {
 	Breadcrumbs,
+	Button,
 	Link,
 	List,
 	ListItem,
@@ -12,15 +13,7 @@ import {
 } from "@mui/material";
 
 import {AccountCircle, Cake} from "@mui/icons-material";
-
-type PersonalInformation = {
-	index: number;
-	name: string;
-	reading: string;
-	gender: string;
-	telephone: string;
-	birthday: string;
-};
+import PersonalInformation from "./PersonalInformation";
 
 type State = {
 	item?: PersonalInformation;
@@ -58,6 +51,14 @@ export default function Detail() {
 		});
 	};
 
+	const navigate = useNavigate()
+
+	const onClickBtnEdit = () => {
+		navigate("/edit/" + id, {
+			state: state.item
+		})
+	}
+
 	useEffect(() => {
 		loadJson();
 	}, []);
@@ -71,6 +72,8 @@ export default function Detail() {
 				<Link href="/">一覧画面</Link>
 				<Typography>詳細画面</Typography>
 			</Breadcrumbs>
+
+			<Button onClick={onClickBtnEdit}>編集</Button>
 
 			{state.item && <PersonalInformationTable item={state.item} />}
 		</Layout>

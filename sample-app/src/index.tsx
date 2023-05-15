@@ -10,6 +10,8 @@ import {
 } from "react-router-dom";
 import { AppStateProvider } from './contexts/AppState';
 import Detail from './Detail';
+import Edit from './Edit';
+import Contact from './Contact';
 
 const router = createBrowserRouter([
 	{
@@ -19,6 +21,14 @@ const router = createBrowserRouter([
 	{
 		path: "/detail/:id",
 		element: <Detail />,
+	},
+	{
+		path: "/edit/:id",
+		element: <Edit />,
+	},
+	{
+		path: "/contact",
+		element: <Contact />,
 	}
 ]);
 

@@ -9,15 +9,7 @@ import {
 	TableRow,
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-
-type PersonalInformation = {
-	index: number;
-	name: string;
-	reading: string;
-	gender: string;
-	telephone: string;
-	birthday: string;
-};
+import PersonalInformation from "./PersonalInformation";
 
 type State = {
 	items: PersonalInformation[];
