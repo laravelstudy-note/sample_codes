@@ -1,9 +1,6 @@
+import Layout from "./layouts/Layout";
 import { useState } from "react";
 import { Button, Stack, TextField } from "@mui/material";
-
-//yup
-import { object, string, ValidationError } from "yup";
-import Layout from "./layouts/Layout";
 
 //フォームが管理するState
 type State = {
@@ -13,52 +10,11 @@ type State = {
 	message: string;
 };
 
-//エラーのState
-type ErrorState = {
-	title: string | null;
-	name: string | null;
-	email: string | null;
-	message: string | null;
-};
-
-//バリデーション
-let schema = object({
-	title: string().required("タイトルは必須です"),
-	name: string().required("名前は必須です"),
-	email: string()
-		.email("正しいメールアドレスを入力してください")
-		.required("メールアドレスは必須です"),
-	message: string().required("本文を入力してください"),
-});
-
 export default function Contact() {
 	const [state, setState] = useState<State>({} as any);
-	const [errors, setErrors] = useState<ErrorState>({} as any);
-
-	const validate = (target: string) => {
-		const key = target as keyof ErrorState;
-
-		try {
-			schema.validateSyncAt(key, state);
-			errors[key] = null;
-		} catch (err) {
-			if (err instanceof ValidationError) {
-				errors[key] = err.message;
-			}
-		}
-
-		//Stateを更新する
-		setErrors({ ...errors });
-		setState({ ...state });
-	};
 
 	const onClickBtnSave = async () => {
-		try {
-			const result = await schema.validate(state);
-			alert(JSON.stringify(state, null, 2));
-		} catch (err) {
-			alert("入力内容を確認してください");
-		}
+		alert(JSON.stringify(state, null, 2));
 	};
 
 	return (
@@ -71,11 +27,9 @@ export default function Contact() {
 					value={state.title}
 					onChange={(e) => {
 						state.title = e.target.value;
-						validate("title");
+						setState({...state})
 					}}
 					required
-					error={errors.title != null}
-					helperText={errors.title || ""}
 				/>
 
 				<TextField
@@ -83,11 +37,9 @@ export default function Contact() {
 					value={state.name}
 					onChange={(e) => {
 						state.name = e.target.value;
-						validate("name");
+						setState({...state})
 					}}
 					required
-					error={errors.name != null}
-					helperText={errors.name || ""}
 				/>
 
 				<TextField
@@ -96,11 +48,9 @@ export default function Contact() {
 					value={state.email}
 					onChange={(e) => {
 						state.email = e.target.value;
-						validate("email");
+						setState({...state})
 					}}
 					required
-					error={errors.email != null}
-					helperText={errors.email || ""}
 				/>
 
 				<TextField
@@ -109,11 +59,9 @@ export default function Contact() {
 					value={state.message}
 					onChange={(e) => {
 						state.message = e.target.value;
-						validate("message");
+						setState({...state})
 					}}
 					required
-					error={errors.message != null}
-					helperText={errors.message || ""}
 				/>
 
 				<Button variant="contained" onClick={onClickBtnSave}>
