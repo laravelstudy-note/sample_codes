@@ -1,0 +1,35 @@
+services:
+
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8000:80"
+    volumes:
+      - ./www:/var/www/html
+    depends_on:
+      - mysql
+
+  mysql:
+    container_name: "lamp-mysql"
+    image: mysql:5.7
+    volumes:
+      - ./mysql:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+
+  phpmyadmin:
+    container_name: "lamp-phpmyadmin"
+    image: phpmyadmin/phpmyadmin
+    environment:
+      - PMA_ARBITRARY=1
+      - PMA_HOST=mysql
+      - PMA_USER=root
+      - PMA_PASSWORD=root
+    links:
+      - mysql
+    ports:
+      - 8080:80
+    volumes:
+      - ./phpmyadmin/sessions:/sessions
